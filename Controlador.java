@@ -1,6 +1,4 @@
-import modelo.Cancha;
-import modelo.Reserva;
-import modelo.Encargado;
+package controlador;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
@@ -12,7 +10,7 @@ public class Controlador {
     private final List<Reserva> listaEspera = new ArrayList<>();
     private final List<Encargado> encargados = new ArrayList<>();
 
-    // ----------- Métodos de gestión de datos base -----------
+   
     public void agregarCancha(Cancha cancha) {
         if (cancha != null) canchas.add(cancha);
     }
@@ -26,9 +24,7 @@ public class Controlador {
     public List<Reserva> getListaEspera() { return listaEspera; }
     public List<Encargado> getEncargados() { return encargados; }
 
-    // ----------- Gestión de reservas -----------
-
-    /** Intenta asignar una cancha disponible a la reserva */
+    
     public boolean procesarReserva(Reserva reserva) {
         if (reserva == null || !reserva.horarioValido() || !reserva.depositoValido()) {
             return false;
@@ -59,13 +55,13 @@ public class Controlador {
         return false;
     }
 
-    /** Cancela una reserva y reasigna si hay alguien en lista de espera */
+  
     public boolean cancelarReserva(Reserva reserva) {
         if (reserva == null || reserva.isCancelada()) return false;
 
         reserva.setCancelada(true);
 
-        // Usar Iterator para evitar ConcurrentModificationException
+     
         Iterator<Reserva> it = listaEspera.iterator();
         while (it.hasNext()) {
             Reserva espera = it.next();
@@ -79,7 +75,7 @@ public class Controlador {
         return true;
     }
 
-    /** Obtiene estadísticas de uso de canchas */
+    
     public String canchaMasDemandada() {
         if (reservas.isEmpty()) return "No hay reservas";
         Cancha masPopular = null;
