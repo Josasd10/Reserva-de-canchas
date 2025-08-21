@@ -6,7 +6,7 @@ import java.time.Duration;
 
 public class Reserva {
 
-    // ----- Datos del evento / solicitud -----
+    
     private String responsable;   
     private String nombreEvento;   
     private String tipoEvento;      
@@ -17,16 +17,16 @@ public class Reserva {
     private boolean depositoPagado;  
     private boolean cancelada;
 
-    // ----- Asignación -----
+    
     private Cancha canchaAsignada;  
     private double costoTotal;      
 
-    // Reglas del complejo
+   
     public static final LocalTime HORA_APERTURA = LocalTime.of(6, 0);
     public static final LocalTime HORA_CIERRE   = LocalTime.of(22, 0);
     public static final int MINUTOS_MINIMO_BLOQUE = 60; // 1 hora
 
-    // Constructores
+    
     public Reserva() { }
 
     public Reserva(String responsable, String nombreEvento, String tipoEvento,
@@ -43,7 +43,7 @@ public class Reserva {
         this.cancelada = false;
     }
 
-    // ----- Getters/Setters -----
+   
     public String getResponsable() { return responsable; }
     public String getNombreEvento() { return nombreEvento; }
     public String getTipoEvento() { return tipoEvento; }
@@ -60,9 +60,7 @@ public class Reserva {
     public void setCanchaAsignada(Cancha canchaAsignada) { this.canchaAsignada = canchaAsignada; }
     public void setCostoTotal(double costoTotal) { this.costoTotal = costoTotal; }
 
-    // ----- Utilidades de validación -----
-
-    /** Regla 1: horario dentro de franja hábil y bloque mínimo. */
+   
     public boolean horarioValido() {
         if (horaInicio == null || horaFin == null || fecha == null) return false;
         if (horaInicio.isBefore(HORA_APERTURA) || horaFin.isAfter(HORA_CIERRE)) return false;
@@ -71,26 +69,24 @@ public class Reserva {
         return min >= MINUTOS_MINIMO_BLOQUE;
     }
 
-    /** Regla 2: depósito pagado. */
+  
     public boolean depositoValido() {
         return depositoPagado;
     }
 
-    /** Regla 3: capacidad compatible con la cancha propuesta. */
     public boolean respetaCapacidad(Cancha cancha) {
         if (cancha == null) return false;
         return jugadoresEstimados <= cancha.getCapacidad();
     }
 
-    /** Chequeo de traslape entre esta reserva y otra para la misma fecha y cancha. */
+    
     public boolean traslapaCon(Reserva otra) {
         if (otra == null) return false;
         if (!this.fecha.equals(otra.fecha)) return false;
-        // traslape si inicio < otra.fin && otra.inicio < fin
+        
         return this.horaInicio.isBefore(otra.horaFin) && otra.horaInicio.isBefore(this.horaFin);
     }
 
-    /** Calcula el costo en base a la cancha y la duración. */
     public double calcularCosto(Cancha cancha) {
         long horas = Math.max(1, Duration.between(horaInicio, horaFin).toHours());
         return cancha.getCostoHora() * horas;
@@ -114,3 +110,5 @@ public class Reserva {
                 '}';
     }
 }
+
+
