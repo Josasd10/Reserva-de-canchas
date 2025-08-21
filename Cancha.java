@@ -1,7 +1,6 @@
 package controlador;
 
 public class Cancha {
-public class Cancha {
 
     private String tipo;          
     private int numero;          
@@ -55,5 +54,6 @@ public class Cancha {
 }
 
 
-}
+
+
 
