@@ -1,6 +1,9 @@
-public static void main(String[] args) {
-    Controlador controlador = new Controlador();
-    Vista vista = new Vista();
+package controlador;
+
+public class Main {
+    public static void main(String[] args) {
+        Controlador controlador = new Controlador();
+        Vista vista = new Vista();
 
     inicializarCanchas(controlador);
 
@@ -44,14 +47,17 @@ public static void main(String[] args) {
                 break;
 
             default:
-                vista.mostrarMensaje("Opción inválida, intente nuevamente.");
+                vista.mostrarMensaje("Opción no válida.");
+                break;
         }
     }
-}
+    
+    }
 
 private static void inicializarCanchas(Controlador controlador) {
     controlador.agregarCancha(new Cancha("Fútbol", 1, true, 22, 150.0));
     controlador.agregarCancha(new Cancha("Baloncesto", 2, true, 10, 100.0));
     controlador.agregarCancha(new Cancha("Tenis", 3, true, 4, 80.0));
-    controlador.agregarCancha(new Cancha("Fútbol", 4, true, 22, 160.0));
-}
+        controlador.agregarCancha(new Cancha("Fútbol", 4, true, 22, 160.0));
+    }
+    }
