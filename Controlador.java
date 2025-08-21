@@ -10,7 +10,6 @@ public class Controlador {
     private final List<Reserva> listaEspera = new ArrayList<>();
     private final List<Encargado> encargados = new ArrayList<>();
 
-   
     public void agregarCancha(Cancha cancha) {
         if (cancha != null) canchas.add(cancha);
     }
@@ -92,3 +91,4 @@ public class Controlador {
         return masPopular != null ? masPopular.toString() : "No hay reservas asignadas";
     }
 }
+
