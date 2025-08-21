@@ -1,6 +1,5 @@
-//Vista
+package controlador;
 
-import modelo.Reserva;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
@@ -9,7 +8,6 @@ public class Vista {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    // ----------- Mostrar menú principal -----------
     public int mostrarMenu() {
         System.out.println("\n--- SISTEMA DE RESERVAS ---");
         System.out.println("1. Registrar nueva reserva");
@@ -23,11 +21,10 @@ public class Vista {
             scanner.next();
         }
         int opcion = scanner.nextInt();
-        scanner.nextLine(); // Limpiar buffer después de nextInt
+        scanner.nextLine(); 
         return opcion;
     }
 
-    // ----------- Solicitar datos de reserva -----------
     public Reserva solicitarDatosReserva() {
         System.out.print("Responsable: ");
         String responsable = scanner.nextLine();
@@ -76,7 +73,7 @@ public class Vista {
             System.out.print("Jugadores estimados: ");
             if (scanner.hasNextInt()) {
                 jugadores = scanner.nextInt();
-                scanner.nextLine(); // Limpiar buffer
+                scanner.nextLine(); 
             } else {
                 System.out.println("Ingrese un número válido.");
                 scanner.next();
@@ -97,7 +94,6 @@ public class Vista {
         return new Reserva(responsable, evento, tipo, fecha, inicio, fin, jugadores, deposito);
     }
 
-    // ----------- Mostrar mensajes -----------
     public void mostrarMensaje(String mensaje) {
         System.out.println(mensaje);
     }
@@ -113,4 +109,8 @@ public class Vista {
             reservas.forEach(r -> System.out.println(r.toString()));
         }
     }
+}
+        }
+    }
+
 }
